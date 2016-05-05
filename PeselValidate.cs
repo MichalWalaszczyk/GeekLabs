@@ -9,40 +9,25 @@ namespace PeselValidate
     class PeselValidate
     {
         private string str1;
-        public string Str1
+        public string getStr1()
         {
-            set
-            {
-                if (this.str1.Length < 10)
-                {
-                    throw new Exception("Podany numer PESEL jest za krótki. PESEL musi składać się z 11 cyfr.");
-                }
-                else if (this.str1.Length > 10)
-                {
-                    throw new Exception("Podany numer PESEL jest za długi. PESEL musi składać się z 11 cyfr.");
-                }
-                else
-                {
-                    this.str1 = value;
-                }
-            }
+            return this.str1;
         }
-
 
         public PeselValidate (string str1)
         {
             this.str1 = str1;
         }
 
-        public bool Validate()
+        public bool validate(string str1)
         {
             int checkSum = 0;
             string stringOfMultipliers = "1379137913";
             for (int i = 0; i < 10; i++)
             {
-                checkSum += int.Parse(stringOfMultipliers[i].ToString()) * int.Parse(this.str1[i].ToString());
+                checkSum += int.Parse(stringOfMultipliers[i].ToString()) * int.Parse(str1[i].ToString());
             }
-            if ((10 - (checkSum % 10)) == int.Parse(this.str1[10].ToString()))
+            if ((10 - (checkSum % 10)) == int.Parse(str1[10].ToString()))
             {
                 return true;
             }
